@@ -2,29 +2,32 @@ var appCache = window.applicationCache;
 $(document).bind('touchmove',function(e){e.preventDefault()});
 $(function(){
 	$('#menu,#score,#help,#lose,#update').css('visibility','hidden');
-	window.hs = 0;
-	window.db = openDatabase('score','0.1','High score records',1024);
-	if(!window.db) {
-		alert('Unable to initialize High Score database.');
-	} else {
+	window.hs = 0;//high score
+	//window.db = openDatabase('score','0.1','High score records',1024);
+	//if(!window.db) {
+	//	alert('Unable to initialize High Score database.');
+	//} else {
 		if(!localStorage.getItem('hs'))
 			localStorage.setItem('hs',0);
 		window.hs = localStorage.getItem('hs');
 		$('#m_hs').text('High Score: '+window.hs);
-	}
-	$('#menu').css('visibility','visible');
-	$('#menu').removeClass('hidden');
-	appCache.addEventListener('updateready',function(e){
-		if(appCache.status == appCache.UPDATEREADY){
-			appCache.swapCache();
-			$('#update').css('visibility','visible').removeClass('hidden');
-		}
-	},false);
-	$('#update div,#lose div').bind('touchstart mousedown',function(){
-		$(this).addClass('t');
-	}).bind('touchend mouseup',function(){
-		$(this).removeClass('t');
-	});
+	//}
+	$('#menu').css('visibility','visible').removeClass('hidden');
+	/*
+		appCache.addEventListener('updateready',function(e){
+			if(appCache.status == appCache.UPDATEREADY){
+				appCache.swapCache();
+				$('#update').css('visibility','visible').removeClass('hidden');
+			}
+		},false);
+	*/
+	/*
+		$('#update div,#lose div').bind('touchstart mousedown',function(){
+			$(this).addClass('t');
+		}).bind('touchend mouseup',function(){
+			$(this).removeClass('t');
+		});
+	*/
 });
 function showHelp() {
 	$('#help').css('visibility','visible');
@@ -82,6 +85,7 @@ function tapCircle(i) {
 		if(window.circles > window.hs) {
 			window.hs = window.circles;
 			$('#s_hs').text('New High Score!');
+			$('#m_hs').text('High Score: '+ window.hs);
 			localStorage.setItem('hs',window.hs);
 		}
 		$('#curscore,#lose_score').text(window.circles);
