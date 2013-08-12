@@ -10,7 +10,7 @@ $(function(){
 		if(!localStorage.getItem('hs'))
 			localStorage.setItem('hs',0);
 		window.hs = localStorage.getItem('hs');
-		$('#m_hs').text('High Score: '+window.hs);
+		$('#m_hs').text('Puntuación: '+window.hs);
 	//}
 	$('#menu').css('visibility','visible').removeClass('hidden');
 	/*
@@ -84,8 +84,8 @@ function tapCircle(i) {
 	if(i==window.circles) {
 		if(window.circles > window.hs) {
 			window.hs = window.circles;
-			$('#s_hs').text('New High Score!');
-			$('#m_hs').text('High Score: '+ window.hs);
+			$('#s_hs').text('Nuevo Record');
+			$('#m_hs').text('Puntuación: '+ window.hs);
 			localStorage.setItem('hs',window.hs);
 		}
 		$('#curscore,#lose_score').text(window.circles);
